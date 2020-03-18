@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/','HomeController@index');
+
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::post('products', 'ProductController@upload');
+    
 });

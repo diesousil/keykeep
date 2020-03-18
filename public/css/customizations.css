@@ -1,0 +1,45 @@
+@charset "UTF-8";
+/*!
+ *   KeyKeep v0.0.1
+ *   Author: Diego Silva <contato@diegosilva.me>
+ *   Website: diegosilva.me <https://diegosilva.me>
+ *   License: Open source - MIT <http://opensource.org/licenses/MIT>
+ */
+/*!
+ *   AdminLTE v3.0.2
+ *   Author: Colorlib
+ *   Website: AdminLTE.io <http://adminlte.io>
+ *   License: Open source - MIT <http://opensource.org/licenses/MIT>
+ */
+/*!
+ * Bootstrap v4.3.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 The Bootstrap Authors
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+ 
+ 
+.card .card-header {
+	background-color: #5a64ed;
+	text-align: center;
+}
+
+.card .card-header h3 {
+	display: block;
+	width: 100%;
+	text-align: center;
+	color: #ffffff;
+}
+
+.card .card-body {
+	min-height: 500px;
+}
+
+.brand-link .brand-image {
+	border-radius: unset;
+	
+}
+
+.brand-link .brand-image.elevation-3 {
+	box-shadow: unset !important;
+}

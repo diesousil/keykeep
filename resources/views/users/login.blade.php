@@ -18,7 +18,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      {!! Form::open(['action' => 'UserController@login','method'=>'post']) !!}
+      {!! Form::open(['action' => 'AuthenticationController@login','method'=>'post']) !!}
         <div class="input-group mb-3">
           {!! Form::text('email', '', ["class"=>"form-control","placeholder"=>"Email"]) !!}
           <div class="input-group-append">

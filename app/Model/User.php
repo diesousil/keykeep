@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 
@@ -44,7 +45,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function validate_credentials($email, $password, &$name) {
+    public function validate_credentials($email, $password) {
         
         $userData = User::where("email",$email)->first();
         
@@ -55,7 +56,6 @@ class User extends Authenticatable
 
             if(strcmp($hashedPassword, $userData->password) === 0) {
                 $result = User::AUTH_STATUS_SUCCESS;
-                $name = $userData["name"];
             } else {
                 $result = User::AUTH_STATUS_INCORRECT_PASSWORD;                                
             }
@@ -65,30 +65,20 @@ class User extends Authenticatable
     }
 
     public function authenticate(Request $request) {
-        $name = "";
+
+        $credentials = $request->only('email', 'password');
+        $result = Auth::guard('web')->attempt($credentials);
+
+        if($result === false)
+            $result = $this->validate_credentials($credentials["email"],$credentials["password"]);
+        else
+            $result = User::AUTH_STATUS_SUCCESS;
         
-        $data = $request->post();
-
-        $email = $data["email"];
-        $password = $data["password"];
-
-        $result = $this->validate_credentials($email, $password, $name);
-
-        if($result == User::AUTH_STATUS_SUCCESS) {
-            $sessionData = ["auth"=>["email"=>$email, "name"=>$name, "date"=>date("d/m/Y H:i:s")]];
-            $request->session()->put($sessionData);
-        }
-
         return $result;
     }
 
-    public function is_authenticated() {
-        return Session::has('auth');
-    }
-
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = hash('sha512', $password);
+    public function logout() {
+        return Auth::logout();
     }
 
 }

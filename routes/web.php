@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('login', 'UserController@login')->name("login");
-Route::post('login', 'UserController@login')->name("login");
-Route::get('logout', 'UserController@logout')->name("logout");
-Route::get('forgot', 'UserController@forgot')->name("forgot");
-Route::get('recover', 'UserController@recover')->name("recover");
-Route::get('register', 'UserController@register')->name("register");
+Route::get('login', 'AuthenticationController@login')->name("login");
+Route::post('login', 'AuthenticationController@login')->name("login");
+Route::get('logout', 'AuthenticationController@logout')->name("logout");
+Route::get('forgot', 'AuthenticationController@forgot')->name("forgot");
+Route::get('recover', 'AuthenticationController@recover')->name("recover");
+Route::get('register', 'AuthenticationController@register')->name("register");
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth:web'], function() {
 	Route::get('/','HomeController@index');
 	Route::get('about','HomeController@about');
 	

@@ -9,4 +9,7 @@ class HomeController extends BaseController
     public function index() {
 		return view('index');
 	}
+	public function list() {
+		return view('list');
+	}
 }

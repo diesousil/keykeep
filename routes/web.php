@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth:web'], function() {
 		Route::get('create','GroupController@create');
 		Route::get('edit','GroupController@edit');
 		Route::post('save','GroupController@save');
-		Route::post('delete','GroupController@delete');
+		Route::get('delete','GroupController@delete');
 	});
 	
 	Route::prefix('credentials')->group(function() {

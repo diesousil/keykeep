@@ -44,7 +44,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">@yield('title')</h3>
+          <h3 class="card-title">Groups</h3>
         </div>
         <div class="card-body">
           @yield('content')

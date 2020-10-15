@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Support\Facades\Auth;
-use App\Model\Credential;
+use App\Model\Group;
 
 class Group extends Eloquent 
 {
@@ -41,8 +41,15 @@ class Group extends Eloquent
 
         $newGroup->name = $formData["name"];
         $newGroup->description = $formData["description"];
-        $newGroup->user_id = $id = Auth::id('id');;
-        $newGroup->parent_id = $formData["parent_id"];
+        $newGroup->user_id = $id = Auth::id('id');
+
+
+        if($formData["parent_id"] != 0){
+            $newGroup->parent_id = $formData["parent_id"];
+        }
+        else{
+            $newGroup->parent_id = null;
+        }
         
         $result = $newGroup->save();
         
@@ -57,6 +64,10 @@ class Group extends Eloquent
         $newGroup->name = $formData["name"];
         $newGroup->description = $formData["description"];
         $newGroup->parent_id = $formData["parent_id"];
+         
+
+        
+        
         
         $result = $newGroup->save();
         

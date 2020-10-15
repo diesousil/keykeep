@@ -88,8 +88,18 @@
 			  <p>Users</p>
 			</a>
 		  </li>
-		  
+		  <!--saquei-->
 		</ul>
+		<ul class="nav nav-treeview">
+		
+			<li class="nav-item">
+			  <a href="{{url("/users/create")}}" class="nav-link">
+				<i class="nav-icon"></i>
+				<p>Create</p>
+			  </a>
+			</li>
+			<!--saquei-->
+		  </ul>
 	  </li>
 	  <li class="nav-item">
             <a href="{{url("/home/about")}}" class="nav-link">

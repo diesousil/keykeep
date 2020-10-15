@@ -80,5 +80,50 @@ class User extends Authenticatable
     public function logout() {
         return Auth::logout();
     }
+    public function list() {
+        
+        $UserResult = User::all();
+        
+        return $UserResult;
+    }
+    public function create($formData) {
 
+        // ORM => Object Relation Mapping
+        // classe = tabela
+        // objeto = linha da tabela
+
+        $newUsers = new User();
+
+        $newUsers->name = $formData["name"];
+        $newUsers->email = $formData["email"];
+        $newUsers->password = hash('sha512', $formData["password"]);
+        $result = $newUsers->save();
+        
+        return $result;
+    }
+    public function atualiza($formData) {
+
+        $id = $formData['id'];
+
+        $updateUsers = User::where("id",$id)->first();;
+
+        $updateUsers->name = $formData["name"];
+        $updateUsers->description = $formData["description"];
+        $updateUsers->password = hash('sha512', $formData["password"]);
+        $result = $newGroup->save();
+        
+        return $result;
+    }
+
+    public function remove($id) {
+        $result=User::find($id)->delete();
+        
+        return $result;
+    }
+    public function edit($id) {
+
+        $result=User::where("id",$id)->first();
+        
+        return $result;
+    }
 }

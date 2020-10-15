@@ -16,13 +16,8 @@
                 <table class="jsgrid-table">
                     <tr class="jsgrid-header-row">
                         <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Id</th>
-                        <th class="jsgrid-header-cell jsgrid-align-left jsgrid-header-sortable" style="width: 200px;">Name</th>
+                        <th class="jsgrid-header-cell jsgrid-align-left jsgrid-header-sortable" style="width: 150px;">Name</th>
                         <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 200px;">Description</th>
-                        <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 200px;">url</th>
-                        <th class="jsgrid-header-cell jsgrid-align-left jsgrid-header-sortable" style="width: 200px;">login</th>
-                        <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 200px;">password</th>
-                        <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 200px;">observations</th>
-                        <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 200px;">group_id</th>
                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 200px;">Commands</th>
                     </tr>
                 
@@ -31,24 +26,16 @@
             <div class="jsgrid-grid-body">
                 <table class="jsgrid-table">
                     <tbody>
-                      @foreach ($select as $credentials)
-                        @if($credentials->user_id == Auth::id('id'))
+                      @foreach ($UserResult as $result)
                           <tr class="jsgrid-row">
-                              <td class="jsgrid-cell" style="width: 50px;">{{ $credentials->id }}</td>
-                              <td class="jsgrid-cell jsgrid-align-left" style="width: 200px;">{{ $credentials->title }}</td>
-                              <td class="jsgrid-cell jsgrid-align-left" style="width: 200px;">{{ $credentials->description }}</td>
-                              <td class="jsgrid-cell jsgrid-align-left" style="width: 200px;">{{ $credentials->url }}</td>
-                              <td class="jsgrid-cell jsgrid-align-left" style="width: 200px;">{{ $credentials->login }}</td>
-                              <td class="jsgrid-cell jsgrid-align-left" style="width: 200px;">{{ $credentials->password }}</td>
-                              <td class="jsgrid-cell jsgrid-align-left" style="width: 200px;">{{ $credentials->observations }}</td>
-                              <td class="jsgrid-cell jsgrid-align-left"  style="width: 200px;">{{ $credentials->group_id }}</td>
-                              <td class="jsgrid-cell jsgrid-align-center">
-                                <a href="http://keykeep.test/credentials/edit?id={{ $credentials->id }}"  ><i class="fas fa-pen"></i></a>
-                                  <a href="http://keykeep.test/credentials/delete?id={{ $credentials->id }}" style="margin-left: 5px;" onclick='return confirm("Tem certeza de que deseja excluir este grupo?");' ><i class="fas fa-trash"></i></a> 
-                                  
+                              <td class="jsgrid-cell" style="width: 50px;">{{ $result->id }}</td>
+                              <td class="jsgrid-cell jsgrid-align-left" style="width: 150px;">{{ $result->name }}</td>
+                              <td class="jsgrid-cell jsgrid-align-left" style="width: 200px;">{{ $result->email }}</td>
+                              <td class="jsgrid-cell jsgrid-align-center" style="width: 200px;">
+                                <a href="http://keykeep.test/users/edit?id={{ $result->id }}"  ><i class="fas fa-pen"></i></a>
+                                <a href="http://keykeep.test/users/delete?id={{ $result->id }}" style="margin-left: 5px;" onclick='return confirm("Tem certeza de que deseja excluir este grupo?");' ><i class="fas fa-trash"></i></a>   
                               </td>
                           </tr>
-                          @endif
                       @endforeach
                     </tbody>
                 </table>

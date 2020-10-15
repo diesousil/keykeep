@@ -15,10 +15,10 @@
             <div class="jsgrid-grid-header jsgrid-header-scrollbar">
                 <table class="jsgrid-table">
                     <tr class="jsgrid-header-row">
-                        <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Codigo</th>
-                        <th class="jsgrid-header-cell jsgrid-align-left jsgrid-header-sortable" style="width: 150px;">Nome</th>
-                        <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 200px;">Descrição</th>
-                        <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 200px;">Comandos</th>
+                        <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Id</th>
+                        <th class="jsgrid-header-cell jsgrid-align-left jsgrid-header-sortable" style="width: 150px;">Name</th>
+                        <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 200px;">Description</th>
+                        <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 200px;">Commands</th>
                     </tr>
                 
                 </table>
@@ -27,15 +27,18 @@
                 <table class="jsgrid-table">
                     <tbody>
                       @foreach ($groups as $group)
-                        <tr class="jsgrid-row">
-                            <td class="jsgrid-cell" style="width: 50px;">{{ $group->id }}</td>
-                            <td class="jsgrid-cell jsgrid-align-left" style="width: 150px;">{{ $group->name }}</td>
-                            <td class="jsgrid-cell jsgrid-align-left" style="width: 200px;">{{ $group->description }}</td>
-                            <td class="jsgrid-cell jsgrid-align-center" style="width: 200px;">
-                                <a href="http://keykeep.test/groups/delete?id={{ $group->id }}" onclick='return confirm("Tem certeza de que deseja excluir este grupo?");' ><i class="fas fa-trash"></i></a> 
+                        @if($group->user_id == Auth::id('id'))
+                          <tr class="jsgrid-row">
+                              <td class="jsgrid-cell" style="width: 50px;">{{ $group->id }}</td>
+                              <td class="jsgrid-cell jsgrid-align-left" style="width: 150px;">{{ $group->name }}</td>
+                              <td class="jsgrid-cell jsgrid-align-left" style="width: 200px;">{{ $group->description }}</td>
+                              <td class="jsgrid-cell jsgrid-align-center" style="width: 200px;">
                                 <a href="http://keykeep.test/groups/edit?id={{ $group->id }}"  ><i class="fas fa-pen"></i></a>
-                            </td>
-                        </tr>
+                                  <a href="http://keykeep.test/groups/delete?id={{ $group->id }}" style="margin-left: 5px;" onclick='return confirm("Tem certeza de que deseja excluir este grupo?");' ><i class="fas fa-trash"></i></a> 
+                                  
+                              </td>
+                          </tr>
+                        @endif
                       @endforeach
                     </tbody>
                 </table>

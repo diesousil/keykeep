@@ -16,24 +16,34 @@
         <div class="col-md-12">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Add User</h3>
+              <h3 class="card-title">Add Credential</h3>
             </div>
             <div class="card-body">
-              <form method="POST" action="http://keykeep.test/groups/save">
+              <form method="POST" action="http://keykeep.test/credentials/save">
                 {{ Form::token() }}
                 <div class="form-group">
-                  <label for="inputName">Nome</label>
-                  <input type="text" id="inputName" class="form-control" name="name">
+                  <label for="inputName">title</label>
+                  <input type="text" id="inputName" class="form-control" name="title">
                 </div>
                 <div class="form-group">
-                  <label for="inputDescription">Description</label>
+                  <label for="inputDescription">Description</label>s
                   <textarea id="inputDescription" class="form-control" rows="4" name="description"></textarea>
                 </div>
                 <div class="form-group">
+                  <label for="inputurl">url</label>
+                  <input type="text" id="inputName" class="form-control" name="Url">
+                  <label for="inputurl">Login</label>
+                  <input type="email" id="inputName" class="form-control" name="Login">
+                  <label for="inputurl">Password</label>
+                  <input type="password" id="inputName" class="form-control" name="Password">
+                  <label for="inputurl">observations</label>
+                  <input type="text" id="inputName" class="form-control" name="observations">
+                </div>
+                <div class="form-group">
                   <label>Select</label>
-                  <select class="form-control" name="parent_id">
+                  <select class="form-control" name="group_id">
                     <option value="0"> - Base Group -</option>
-                    @foreach ($select as $resultado)
+                    @foreach ($select2 as $resultado)
                     <option value="{{ $resultado->id }}"> {{ $resultado->name }}</option>
                     @endforeach
                   </select>

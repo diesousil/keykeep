@@ -16,28 +16,24 @@
         <div class="col-md-12">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Add User</h3>
+              <h3 class="card-title">Add Group</h3>
             </div>
             <div class="card-body">
-              <form method="POST" action="http://keykeep.test/groups/save">
+              <form method="POST" action="http://keykeep.test/users/save">
                 {{ Form::token() }}
                 <div class="form-group">
                   <label for="inputName">Nome</label>
                   <input type="text" id="inputName" class="form-control" name="name">
                 </div>
                 <div class="form-group">
-                  <label for="inputDescription">Description</label>
-                  <textarea id="inputDescription" class="form-control" rows="4" name="description"></textarea>
+                  <label for="inputName">Email</label>
+                  <input type="email" id="inputName" class="form-control" name="email">
                 </div>
                 <div class="form-group">
-                  <label>Select</label>
-                  <select class="form-control" name="parent_id">
-                    <option value="0"> - Base Group -</option>
-                    @foreach ($select as $resultado)
-                    <option value="{{ $resultado->id }}"> {{ $resultado->name }}</option>
-                    @endforeach
-                  </select>
+                  <label for="inputDescription">password</label>
+                  <input type="password" id="inputDescription" class="form-control" rows="4" name="password">
                 </div>
+                
                 <input type="submit" value="Save" class="btn btn-success float-right" style="float: right;margin-left:10px">
                 <a href="#" class="btn btn-secondary"  style="float: right;">Cancel</a>
                 

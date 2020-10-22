@@ -1,7 +1,7 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "KeyKeep - Keep your keys together",
     "keywords": [
         "framework",
         "laravel"

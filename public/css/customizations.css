@@ -20,15 +20,15 @@
  
  
 .card .card-header {
-	background-color: #5a64ed;
-	text-align: center;
+	background-color: #dcb45d;
+	color: #5d85dc;
 }
 
 .card .card-header h3 {
 	display: block;
 	width: 100%;
 	text-align: center;
-	color: #ffffff;
+	color: #5d85dc;
 }
 
 .card .card-body {
@@ -42,4 +42,8 @@
 
 .brand-link .brand-image.elevation-3 {
 	box-shadow: unset !important;
+}
+
+.dropdown-menu-lg {
+	min-width: 180px;
 }

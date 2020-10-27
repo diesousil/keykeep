@@ -8,6 +8,7 @@ use App\Libraries\BaseFunctions;
 class BaseController extends Controller
 {
     protected $title;
+    protected $userName;
     protected $baseFunctions;
     
     public function __construct() {
@@ -15,7 +16,6 @@ class BaseController extends Controller
         $currentAction = $baseFunctions->getCurrentAction();
 
         $this->title = $currentAction['controller'] . ' - ' . $currentAction['action'];
-
         
     }
 
@@ -23,6 +23,9 @@ class BaseController extends Controller
         
         if(!isset($data['title']))
             $data['title'] = $this->title;
+
+        if(!isset($data['userName']))
+            $data['userName'] = auth()->user()->name;
 
         return view($viewName, $data);
 

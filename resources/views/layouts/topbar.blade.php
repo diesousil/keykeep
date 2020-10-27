@@ -9,12 +9,19 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        
+        <!-- Sidebar user (optional) -->
+        <li class="nav-item topbar-user">
+            <div class="image">
+                <img src="/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{$userName}}</a>
+            </div>
+        </li>
         <!-- User Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fa fa-arrow-down"></i>
-                
+                <i class="fa fa-arrow-down"></i>                
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-item dropdown-header">Diego Silva</span>

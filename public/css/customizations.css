@@ -47,3 +47,34 @@
 .dropdown-menu-lg {
 	min-width: 180px;
 }
+
+.btn-tool {
+	color: #444444;
+}
+
+.btn-tool:hover {
+	color: #000000;
+}
+
+.topbar-user .image {
+	max-width: 40px;
+	display: inline-block;
+}
+
+.topbar-user .image img {
+	max-width: 100%;
+} 
+.topbar-user .info {
+	max-width: 100%;
+	display: inline-block;	
+} 
+
+.topbar-user .info a {
+	color: rgba(255,255,255,.75);
+	margin-left: 10px;
+	margin-right: 5px;
+}
+
+.topbar-user .info a:hover {
+	color: rgba(255,255,255,1);
+}

@@ -14,5 +14,9 @@ class HomeController extends BaseController
 	public function list() {
 		return $this->viewResult('list');
 	}
+
+	public function about() {
+		return $this->viewResult('about');
+	}
 	
 }

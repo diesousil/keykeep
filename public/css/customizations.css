@@ -18,10 +18,17 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
  
- 
+ body {
+	 overflow: scroll;
+ }
+
+ .card {
+	 box-shadow: 1px 1px 4px #000;
+ } 
 .card .card-header {
 	background-color: #dcb45d;
 	color: #5d85dc;
+	border: solid 1px #dcb45d;
 }
 
 .card .card-header h3 {
@@ -33,6 +40,14 @@
 
 .card .card-body {
 	min-height: 500px;
+	background-color: #f4e8ce;
+}
+
+.card .card-footer {
+	background-color: #f4e8ce;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	
 }
 
 .brand-link .brand-image {

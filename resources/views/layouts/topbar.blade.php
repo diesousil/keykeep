@@ -12,10 +12,10 @@
         <!-- Sidebar user (optional) -->
         <li class="nav-item topbar-user">
             <div class="image">
-                <img src="/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <a href="<?php echo URL::to('myprofile'); ?>" class="d-block"><img src="/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"></a>
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{$userName}}</a>
+                <a href="<?php echo URL::to('myprofile'); ?>" class="d-block">{{$userName}}</a>
             </div>
         </li>
         <!-- User Dropdown Menu -->
@@ -27,19 +27,24 @@
                 <span class="dropdown-item dropdown-header">Diego Silva</span>
                 
                 <div class="dropdown-divider"></div>
-                
+
+                <a href="<?php echo URL::to('myprofile'); ?>" class="dropdown-item">
+                    <i class="fas fa-users mr-2"></i> My Profile
+                </a>
+
                 <a href="#" class="dropdown-item">
                     <i class="fa fa-key mr-2"></i> Change Password
                 </a>
 
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 friend requests
+                
+                <a href="<?php echo URL::to('about'); ?>" class="dropdown-item">
+					<i class="fa fa-at mr-2"></i> About
+                </a>
+				
+                <a href="<?php echo URL::to('logout'); ?>" class="dropdown-item">
+					<i class="fas fa-sign-out-alt mr-2"></i> Logout
                 </a>
 
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 3 new reports
-                </a>
-                
             </div>
         </li>
         

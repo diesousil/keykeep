@@ -14,6 +14,7 @@ class CredentialController extends BaseController
 	protected $groupModel;
 
 	public function __construct(Credential $CredentialModel, Group $groupModel) {
+		parent::__construct();
 		$this->CredentialModel = $CredentialModel;
 		$this->groupModel = $groupModel;
 	}

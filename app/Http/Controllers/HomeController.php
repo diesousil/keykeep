@@ -6,10 +6,13 @@ use App\Http\Controllers\BaseController;
 
 class HomeController extends BaseController
 {
-    public function index() {
-		return view('index');
+	
+	public function index() {
+		return $this->viewResult('index');
 	}
+
 	public function list() {
-		return view('list');
+		return $this->viewResult('list');
 	}
+	
 }

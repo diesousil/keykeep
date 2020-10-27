@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title><?php echo config("app.name"); ?> | @yield('title')</title>
+  <title><?php echo config("app.name"); ?> | {{ $title }}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,7 +44,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Groups</h3>
+          <h3 class="card-title">{{$title}}</h3>
         </div>
         <div class="card-body">
           @yield('content')

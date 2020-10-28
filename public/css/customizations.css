@@ -93,3 +93,13 @@
 .topbar-user .info a:hover {
 	color: rgba(255,255,255,1);
 }
+
+
+.jsgrid-grid-header {
+	overflow: hidden;	
+}
+
+.jsgrid-table tr th {
+	text-align: center;
+	font-weight: normal;
+}

@@ -13,6 +13,7 @@ class AuthenticationController extends BaseController
 	protected $userModel;
 
 	public function __construct(User $userModel ) {
+		parent::__construct();
 		$this->userModel = $userModel;		
 	}
 
@@ -36,27 +37,30 @@ class AuthenticationController extends BaseController
 				Session::flash('error-message', 'Invalid credentials.'); 
 			}
 		}
-
-		return view('users.login');
+		return $this->viewResult('users.login');
 	}
 	
     public function forgot() {
 		$this->CheckIsAuthenticated();
-		return view('users.forgot');
+		
+		return $this->viewResult('users.forgot');
 	}
 	
 	public function recover() {
 		$this->CheckIsAuthenticated();
-		return view('users.recover');
+
+		return $this->viewResult('users.recover');
 	}
 	
 	public function register() {
 		$this->CheckIsAuthenticated();
-		return view('users.register');
+
+		return $this->viewResult('users.register');
 	}
 	
 	public function logout() {
 		$this->userModel->logout();
-		return redirect('login');
+
+		return $this->viewResult('users.login');
 	}
 }

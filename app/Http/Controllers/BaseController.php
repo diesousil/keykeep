@@ -24,7 +24,7 @@ class BaseController extends Controller
         if(!isset($data['title']))
             $data['title'] = $this->title;
 
-        if(!isset($data['userName']))
+        if(auth()->user() && !isset($data['userName']))
             $data['userName'] = auth()->user()->name;
 
         return view($viewName, $data);

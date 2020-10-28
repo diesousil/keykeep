@@ -12,18 +12,20 @@ class GroupController extends BaseController
 	protected $groupModel;
 
 	public function __construct(Group $groupModel) {
+		parent::__construct();
 		$this->groupModel = $groupModel;		
 	}
 
     public function index() {
 		$groups = $this->groupModel->list();
 		
-		return view('group.list',  ['groups'=>$groups] ); // vai procurar uma view chamada index, no diretório Group
+		return $this->viewResult('group.list', ['groups'=>$groups]);
 	}
 
 	public function create() {
 		$groups = $this->groupModel->list();
-		return view('group.create', ['select'=>$groups]); // vai procurar uma view chamada index, no diretório Group
+
+		return $this->viewResult('group.list', ['select'=>$groups]);
 	}
 
 	public function save(Request $request) {
@@ -36,6 +38,7 @@ class GroupController extends BaseController
 		else{
 			$resultado = $this->groupModel->create($formData);
 		}
+
 		return redirect('groups');
 	}
 
@@ -52,6 +55,6 @@ class GroupController extends BaseController
 		
 		$resultado = $this->groupModel->edit($id);
 		
-		return view('group.edit', ['resultedit'=>$resultado, 'select'=>$groups]);
+		return $this->viewResult('group.edit', ['resultedit'=>$resultado, 'select'=>$groups]);
 	}
 }

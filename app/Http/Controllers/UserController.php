@@ -11,6 +11,7 @@ class UserController extends BaseController
     protected $UserModel;
 
 	public function __construct(User $UserModel) {
+		parent::__construct();
 		$this->UserModel = $UserModel;		
 	}
 
@@ -22,7 +23,8 @@ class UserController extends BaseController
 	}
 	public function create() {
 		$UserResult = $this->UserModel->list();
-		return view('users.create', ['UserResult'=>$UserResult]);
+
+		return $this->viewResult('users.create', ['UserResult'=>$UserResult]);
 	}
 	public function save(Request $request) {
 
@@ -50,6 +52,6 @@ class UserController extends BaseController
 		
 		$resultUser = $this->UserModel->edit($id);
 		
-		return view('users.edit', ['resultedit'=>$resultUser]);
+		return $this->viewResult('users.edit', ['resultedit'=>$resultUser]);
 	}
 }

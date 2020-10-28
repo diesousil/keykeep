@@ -21,13 +21,15 @@ class CredentialController extends BaseController
 
     public function index() {
 		$credentialObjList = $this->CredentialModel->list();
-		return view('credentials.list',  ['select'=>$select] ); // vai procurar uma view chamada index, no diretório Group
+		
+		return $this->viewResult('credentials.list',  ['select'=>$select]);
 	}
 
 	public function create() {
 		$Credentials = $this->CredentialModel->list();
 		$Credentialsgroup = $this->groupModel->list();
-		return view('credentials.create', ['select'=>$Credentials, 'select2'=>$Credentialsgroup]); // vai procurar uma view chamada index, no diretório Group
+		
+		return $this->viewResult('credentials.create', ['select'=>$Credentials, 'select2'=>$Credentialsgroup]);
 	}
 
 	public function save(Request $request) {
@@ -56,6 +58,7 @@ class CredentialController extends BaseController
 		
 		$resultado = $this->CredentialModel->edit($id);
 		$Credentialsgroup = $this->groupModel->list();
-		return view('credentials.edit', ['resultedit'=>$resultado, 'select2'=>$Credentialsgroup]);
+
+		return $this->viewResult('credentials.edit', ['resultedit'=>$resultado, 'select2'=>$Credentialsgroup]);
 	}
 }

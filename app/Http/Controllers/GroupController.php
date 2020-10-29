@@ -17,15 +17,15 @@ class GroupController extends BaseController
 	}
 
     public function index() {
-		$groups = $this->groupModel->list();
+		$groupsList = $this->groupModel->list();
 		
-		return $this->viewResult('group.list', ['groups'=>$groups]);
+		return $this->viewResult('group.list', ['groups'=>$groupsList]);
 	}
 
 	public function create() {
-		$groups = $this->groupModel->list();
+		$parentGroups = $this->groupModel->list();
 
-		return $this->viewResult('group.list', ['select'=>$groups]);
+		return $this->viewResult('group.create', ['parentGroups'=>$parentGroups]);
 	}
 
 	public function save(Request $request) {

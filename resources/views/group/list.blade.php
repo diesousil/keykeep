@@ -27,7 +27,7 @@
                     <td class="jsgrid-cell jsgrid-align-left" style="width: 200px;">{{ $group->description }}</td>
                     <td class="jsgrid-cell jsgrid-align-center" style="width: 200px;">
                       <a href="<?php echo URL::to('/'); ?>/groups/edit?id={{ $group->id }}"  ><i class="fas fa-pen"></i></a>
-                        <a href="<?php echo URL::to('/'); ?>/groups/delete?id={{ $group->id }}" style="margin-left: 5px;" onclick='return confirm("Tem certeza de que deseja excluir este grupo?");' ><i class="fas fa-trash"></i></a> 
+                        <a href="<?php echo URL::to('/'); ?>/groups/delete?id={{ $group->id }}" style="margin-left: 5px;" onclick='return confirm("Tem certeza de que deseja excluir este grupo? ATENÇÂO: SERÂO EXCLUÌDOS OS SUBGRUPOS E AS CREDENCIAIS.");' ><i class="fas fa-trash"></i></a> 
                         
                     </td>
                 </tr>

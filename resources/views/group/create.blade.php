@@ -27,8 +27,8 @@
       </select>
     </div>
 
-    <input type="submit" value="Save" class="btn btn-success float-right" style="float: right;margin-left:10px">
-    <a href="#" class="btn btn-secondary"  style="float: right;">Cancel</a>
+    <input type="submit" value="Save" class="btn btn-success float-right">
+    <a href="#" class="btn btn-secondary">Cancel</a>
     
   </form>
 @stop

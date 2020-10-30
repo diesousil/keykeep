@@ -20,27 +20,27 @@ class CredentialController extends BaseController
 	}
 
     public function index() {
-		$credentialObjList = $this->CredentialModel->list();
+		$credentialsList = $this->CredentialModel->list();
 		
-		return $this->viewResult('credentials.list',  ['select'=>$select]);
+		return $this->viewResult('credentials.list',  ['credentialsList'=>$credentialsList]);
 	}
 
 	public function create() {
-		$Credentials = $this->CredentialModel->list();
-		$Credentialsgroup = $this->groupModel->list();
+		$groups = $this->groupModel->list();
 		
-		return $this->viewResult('credentials.create', ['select'=>$Credentials, 'select2'=>$Credentialsgroup]);
+		return $this->viewResult('credentials.create', ['groups'=>$groups]);
 	}
 
 	public function save(Request $request) {
 
 		$formData = $request->all();
+
 		if(isset($formData['id'])) {
-			$resultado = $this->CredentialModel->atualiza($formData);
-		}
-		else{
+			$resultado = $this->CredentialModel->update($formData);
+		} else {
 			$resultado = $this->CredentialModel->create($formData);
 		}
+		
 		return redirect('credentials');
 	}
 

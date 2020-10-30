@@ -59,25 +59,24 @@ class Credential extends Eloquent
         
         return $result;
     }
-    public function atualiza($formData) {
+    public function update($formData) {
 
-        $id = $formData['id'];
+        var_dump($formData);
+        exit;
 
         $newCredential = new Credential();
         
+        $id = $formData['id'];
+
         $newCredential->title = $formData["title"];
         $newCredential->description = $formData["description"];
         $newCredential->user_id = $id = Auth::id('id');
         $newCredential->group_id = $formData["group_id"];
-        $newCredential->Url = $formData["Url"];
-        $newCredential->Login = $formData["Login"];
-        $newCredential->Password = $formData["Password"];
+        $newCredential->Url = $formData["url"];
+        $newCredential->Login = $formData["login"];
+        $newCredential->Password = $formData["password"];
         $newCredential->observations = $formData["observations"];
-         
 
-        
-        
-        
         $result = $newCredential->save();
         
         return $result;

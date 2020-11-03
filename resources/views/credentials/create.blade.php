@@ -19,12 +19,12 @@
 
   <div class="form-group">
     <label for="inputurl">URL</label>
-    <input type="text" id="inputName" class="form-control" name="Url">
+    <input type="text" id="inputName" class="form-control" name="url">
   </div>
   
   <div class="form-group">
     <label for="inputLogin">Login</label>
-    <input type="text" id="inputLogin" class="form-control" name="Login">
+    <input type="text" id="inputLogin" class="form-control" name="login">
   </div>
   
   <div class="form-group">

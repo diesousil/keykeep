@@ -17,44 +17,39 @@ class GroupController extends BaseController
 	}
 
     public function index() {
-		$groupsList = $this->groupModel->list();
+		$groupsList = $this->groupModel->getList();
 		
 		return $this->viewResult('group.list', ['groups'=>$groupsList]);
 	}
 
 	public function create() {
-		$parentGroups = $this->groupModel->list();
+		$parentGroups = $this->groupModel->getList();
 
 		return $this->viewResult('group.create', ['parentGroups'=>$parentGroups]);
 	}
 
 	public function save(Request $request) {
 
-		$formData = $request->all();
+		$formData = $request->all();		
+		$result = $this->groupModel->saveByForm($formData);
 		
-		if(isset($formData['id'])) {
-			$resultado = $this->groupModel->atualiza($formData);
-		}
-		else{
-			$resultado = $this->groupModel->create($formData);
-		}
-
 		return redirect('groups');
 	}
 
 	public function delete(Request $request) {
-		$id = $request->query('id');
 		
-		$resultado = $this->groupModel->remove($id);
+		$id = $request->query('id');		
+		$resultado = $this->groupModel->deleteById($id);
 
 		return redirect('groups');
 	}
+
 	public function edit(Request $request) {
-		$groups = $this->groupModel->list();
+		
 		$id = $request->query('id');
+		$groupToEdit = $this->groupModel->getById($id);
+		$groups = $this->groupModel->getList();
 		
-		$resultado = $this->groupModel->edit($id);
-		
-		return $this->viewResult('group.edit', ['resultedit'=>$resultado, 'select'=>$groups]);
+		return $this->viewResult('group.edit', ['groupToEdit'=>$groupToEdit, 'parentGroups'=>$groups]);
 	}
 }

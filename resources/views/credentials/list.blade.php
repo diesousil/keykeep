@@ -8,14 +8,9 @@
       <div class="jsgrid-grid-header jsgrid-header-scrollbar">
           <table class="jsgrid-table">
               <tr class="jsgrid-header-row">
-                  <th class="jsgrid-header-cell jsgrid-header-sortable">Id</th>
-                  <th class="jsgrid-header-cell jsgrid-align-left jsgrid-header-sortable">Name</th>
-                  <th class="jsgrid-header-cell jsgrid-header-sortable">Description</th>
-                  <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable">url</th>
-                  <th class="jsgrid-header-cell jsgrid-align-left jsgrid-header-sortable">login</th>
-                  <th class="jsgrid-header-cell jsgrid-header-sortable">password</th>
-                  <th class="jsgrid-header-cell jsgrid-header-sortable">observations</th>
-                  <th class="jsgrid-header-cell jsgrid-header-sortable">group_id</th>
+                  <th class="jsgrid-header-cell jsgrid-align-left jsgrid-header-sortable">Title</th>
+                  <th class="jsgrid-header-cell jsgrid-header-sortable">Observations</th>
+                  <th class="jsgrid-header-cell jsgrid-header-sortable">Group Name</th>
                   <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable">Commands</th>
               </tr>
           
@@ -26,12 +21,7 @@
               <tbody>
                 @foreach ($credentialsList as $credentials)                  
                     <tr class="jsgrid-row">
-                        <td class="jsgrid-cell">{{ $credentials->id }}</td>
                         <td class="jsgrid-cell jsgrid-align-left">{{ $credentials->title }}</td>
-                        <td class="jsgrid-cell jsgrid-align-left">{{ $credentials->description }}</td>
-                        <td class="jsgrid-cell jsgrid-align-left">{{ $credentials->url }}</td>
-                        <td class="jsgrid-cell jsgrid-align-left">{{ $credentials->login }}</td>
-                        <td class="jsgrid-cell jsgrid-align-left">{{ $credentials->password }}</td>
                         <td class="jsgrid-cell jsgrid-align-left">{{ $credentials->observations }}</td>
                         <td class="jsgrid-cell jsgrid-align-left" >{{ $credentials->group_id }}</td>
                         <td class="jsgrid-cell jsgrid-align-center">

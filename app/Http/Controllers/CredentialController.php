@@ -20,13 +20,13 @@ class CredentialController extends BaseController
 	}
 
     public function index() {
-		$credentialsList = $this->CredentialModel->list();
+		$credentialsList = $this->CredentialModel->getList();
 		
 		return $this->viewResult('credentials.list',  ['credentialsList'=>$credentialsList]);
 	}
 
 	public function create() {
-		$groups = $this->groupModel->list();
+		$groups = $this->groupModel->getList();
 		
 		return $this->viewResult('credentials.create', ['groups'=>$groups]);
 	}
@@ -34,31 +34,26 @@ class CredentialController extends BaseController
 	public function save(Request $request) {
 
 		$formData = $request->all();
-
-		if(isset($formData['id'])) {
-			$resultado = $this->CredentialModel->update($formData);
-		} else {
-			$resultado = $this->CredentialModel->create($formData);
-		}
+		$result = $this->CredentialModel->saveByForm($formData);
 		
 		return redirect('credentials');
 	}
 
 	public function delete(Request $request) {
-		$id = $request->query('id');
-		
-		$resultado = $this->CredentialModel->remove($id);
+
+		$id = $request->query('id');		
+		$resultado = $this->CredentialModel->deleteById($id);
 
 		return redirect('Credentials');
 	}
+
 	public function edit(Request $request) {
-		$Credentials = $this->CredentialModel->list();
 		 
 		$id = $request->query('id');
 		
-		$resultado = $this->CredentialModel->edit($id);
-		$Credentialsgroup = $this->groupModel->list();
+		$credentialToEdit = $this->CredentialModel->getById($id);
+		$groups = $this->groupModel->getList();
 
-		return $this->viewResult('credentials.edit', ['resultedit'=>$resultado, 'select2'=>$Credentialsgroup]);
+		return $this->viewResult('credentials.edit', ['credentialToEdit'=>$credentialToEdit, 'groups'=>$groups]);
 	}
 }

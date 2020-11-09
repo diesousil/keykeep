@@ -24,6 +24,22 @@ class Credential extends BaseModel
         parent::__construct();
     }
 
+    public function getByGroupId($groupId, $userId = null, $order = null) {
+        
+        if($order == null)
+            $order = $this->defaultOrder;
+
+        $queryBuilder = Credential::where('group_id', $groupId)->orderBy($order[0], $order[1]);
+        
+        if($userId != null) {
+            $queryBuilder->where('user_id', $userId);
+        }
+        
+        $credentials = $queryBuilder->get();
+
+        return $credentials;
+    }
+
     public function saveByForm($formData) {
         
         $formData["user_id"] = Auth::id('id');

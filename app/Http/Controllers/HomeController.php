@@ -17,7 +17,7 @@ class HomeController extends BaseController
 
 	public function index() {
 		$groupsTree = $this->groupModel->getGroupsTree(Auth::id('id'));
-		var_dump($groupsTree);
+		
 		return $this->viewResult('index', ['groupsTree'=>$groupsTree] );
 	}
 

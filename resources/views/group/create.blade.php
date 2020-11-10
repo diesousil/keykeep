@@ -1,7 +1,5 @@
 @extends('layouts.master')
 
-@section('title', 'list')
-
 @section('content')
 
   <form method="POST" action="<?php echo URL::to('/'); ?>/groups/save">

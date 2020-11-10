@@ -50,6 +50,10 @@
 	
 }
 
+.card .card-header .card-title {
+	color: #0f0c03;
+}
+
 .brand-link .brand-image {
 	border-radius: unset;
 	
@@ -111,4 +115,39 @@
 
 .btn.btn-secondary {
 	float: right;
+}
+
+/* tree-view component styles */
+.tree-view, 
+.tree-view ul {
+	list-style: none;
+}
+
+.tree-view .icon {
+	margin-right: 5px;
+	font-size: 1.3em;
+}
+
+.tree-view li.root-node {
+	margin: 20px 0;
+}
+
+.tree-view .credentials .icon i {
+	color: #9f9e9a;
+}
+
+.tree-view .child-node > .icon i,
+.tree-view .root-node > .icon i {
+	color: #c2922a;
+}
+
+.tree-view .children,
+.tree-view .credentials {
+	display: none;
+}
+
+.tree-view .child-node > .icon:hover,
+.tree-view .root-node > .icon:hover,
+.tree-view .credentials > .icon i {
+	cursor: pointer;
 }

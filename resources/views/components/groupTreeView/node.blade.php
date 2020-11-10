@@ -6,12 +6,16 @@
  
     data-node-id="{{ $nodeData["id"] }}">
 
+    <span class="icon"><i class="fa fa-folder"></i></span>
     <span class="title"> {{ $nodeData['name'] }}</span>
 
     @if(count($nodeData["credentials"]) > 0)
         <ul class="credentials">
             @foreach($nodeData["credentials"] as $credential)
-            <li>{{ $credential["title"] }} </li>
+                <li data-node-id="{{ $credential["id"] }}">
+                    <span class="icon"><i class="fa fa-key"></i></span>
+                    <span class="title">{{ $credential["title"] }}</span>
+                </li>
             @endforeach
         </ul>
     @endif

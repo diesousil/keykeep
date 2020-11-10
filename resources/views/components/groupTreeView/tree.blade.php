@@ -1,3 +1,3 @@
-<ul>
+<ul class="tree-view">
     {!! $treeContent !!}
 </ul>

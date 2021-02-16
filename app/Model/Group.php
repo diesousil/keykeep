@@ -79,4 +79,15 @@ class Group extends BaseModel
         return $credentials;
     }
 
+
+
+    public function saveByForm($formData) {
+        $formData["user_id"] = Auth::id('id');
+        
+        if(intval($formData["parent_id"]) == 0)
+            $formData["parent_id"] = null;
+
+        return parent::saveByForm($formData);
+    }
+
 }

@@ -12,7 +12,7 @@ use App\Model\Credential;
 
 class Credential extends BaseModel 
 {
-    protected $table = 'Credentials';
+    protected $table = 'credentials';
 
     protected $fillable = [
         'title', 'description', 'group_id', 'user_id', 'url', 'login', 'password','observations'

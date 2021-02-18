@@ -1,5 +1,6 @@
 @extends('layouts.master')
 
+@section('title', 'Create a Group')
 @section('content')
 
   <form method="POST" action="<?php echo URL::to('/'); ?>/groups/save">

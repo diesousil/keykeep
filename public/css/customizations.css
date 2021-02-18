@@ -4,20 +4,49 @@
  *   Author: Diego Silva <contato@diegosilva.me>
  *   Website: diegosilva.me <https://diegosilva.me>
  *   License: Open source - MIT <http://opensource.org/licenses/MIT>
- */
-/*!
+ *
  *   AdminLTE v3.0.2
  *   Author: Colorlib
  *   Website: AdminLTE.io <http://adminlte.io>
  *   License: Open source - MIT <http://opensource.org/licenses/MIT>
- */
-/*!
- * Bootstrap v4.3.1 (https://getbootstrap.com/)
- * Copyright 2011-2019 The Bootstrap Authors
- * Copyright 2011-2019 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ *
+ * 	 Bootstrap v4.3.1 (https://getbootstrap.com/)
+ *   Copyright 2011-2019 The Bootstrap Authors
+ *   Copyright 2011-2019 Twitter, Inc.
+ *   Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
  
+.wd10 {
+	width: 10%;
+}
+.wd20 {
+	width: 20%;
+}
+.wd30 {
+	width: 30%;
+}
+.wd40 {
+	width: 40%;
+}
+.wd50 {
+	width: 50%;
+}
+.wd60 {
+	width: 60%;
+}
+.wd70 {
+	width: 70%;
+}
+.wd80 {
+	width: 80%;
+}
+.wd90 {
+	width: 90%;
+}
+.wd100 {
+	width: 100%;
+}
+
  body {
 	 overflow: scroll;
  }
@@ -100,12 +129,30 @@
 
 
 .jsgrid-grid-header {
-	overflow: hidden;	
+	overflow: hidden;
+	padding: 0;
+	border: 0;
+	margin: 0;
 }
 
 .jsgrid-table tr th {
 	text-align: center;
 	font-weight: normal;
+}
+
+.jsgrid-cell a {
+	color: #dcb45d;
+}
+
+.jsgrid-cell a:hover {
+	color: #a27618;
+}
+
+.jsgrid-header-row > .jsgrid-header-cell {
+    background: #343a40;
+    color: #c2c7d0;
+    font-weight: bold;
+    border: none;
 }
 
 .btn.btn-success.float-right {
@@ -150,4 +197,14 @@
 .tree-view .root-node > .icon:hover,
 .tree-view .credentials > .icon i {
 	cursor: pointer;
+}
+
+
+.jsgrid-grid-body {
+	overflow: hidden;
+	border-bottom: solid 2px #343a40;
+}
+
+body.list .card .card-body {
+	padding: 0;
 }

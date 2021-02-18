@@ -19,7 +19,7 @@ class GroupController extends BaseController
     public function index() {
 		$groupsList = $this->groupModel->getList();
 		
-		return $this->viewResult('group.list', ['groups'=>$groupsList]);
+		return $this->viewResult('group.list', ['groups'=>$groupsList,'actionIsList'=>true]);
 	}
 
 	public function create() {
@@ -30,7 +30,7 @@ class GroupController extends BaseController
 
 	public function save(Request $request) {
 
-		$formData = $request->all();		
+		$formData = $request->all();
 		$result = $this->groupModel->saveByForm($formData);
 		
 		return redirect('groups');
@@ -50,6 +50,6 @@ class GroupController extends BaseController
 		$groupToEdit = $this->groupModel->getById($id);
 		$groups = $this->groupModel->getList();
 		
-		return $this->viewResult('group.edit', ['groupToEdit'=>$groupToEdit, 'parentGroups'=>$groups]);
+		return $this->viewResult('group.edit', ['groupToEdit'=>$groupToEdit, 'allGroups'=>$groups]);
 	}
 }

@@ -22,7 +22,7 @@ class CredentialController extends BaseController
     public function index() {
 		$credentialsList = $this->CredentialModel->getList();
 		
-		return $this->viewResult('credentials.list',  ['credentialsList'=>$credentialsList]);
+		return $this->viewResult('credentials.list',  ['credentialsList'=>$credentialsList,'actionIsList'=>true]);
 	}
 
 	public function create() {

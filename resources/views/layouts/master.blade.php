@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title><?php echo config("app.name"); ?> | {{ $title }}</title>
+  <title><?php echo config("app.name"); ?> | @section("title"){{$title}}@show</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="<?php echo URL::to('/'); ?>/css/customizations.css?v=<?php echo rand(0,10000000);?>">
 
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini @if(isset($actionIsList) && $actionIsList) list @endif">
 <!-- Site wrapper -->
 <div class="wrapper">
   @section('topbar')
@@ -70,8 +70,8 @@
             <h5 class="card-title">@section("title"){{$title}}@show</h5>
             
             <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+              <!--<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>-->
+              <!--<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>-->
             </div>
         </div>
         

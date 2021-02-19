@@ -24,6 +24,18 @@ class Credential extends BaseModel
         parent::__construct();
     }
 
+    public function getList() {
+        
+        $listToReturn = Credential::orderBy($this->defaultOrder[0], $this->defaultOrder[1])
+                            ->join('groups','groups.id','=','credentials.group_id')
+                            ->select('credentials.*','groups.name as group_name')
+                            ->get();
+
+        
+        return $listToReturn;
+        
+    }
+
     public function getByGroupId($groupId, $userId = null, $order = null) {
         
         if($order == null)

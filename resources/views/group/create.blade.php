@@ -3,7 +3,7 @@
 @section('title', 'Create a Group')
 @section('content')
 
-  <form method="POST" action="<?php echo URL::to('/'); ?>/groups/save">
+  {{Form::open(['action'=>'GroupController@save'])}}
     {{ Form::token() }}
 
     <div class="form-group">
@@ -29,5 +29,5 @@
     <input type="submit" value="Save" class="btn btn-success float-right">
     <a href="#" class="btn btn-secondary">Cancel</a>
     
-  </form>
+  {{ Form::close() }}
 @stop

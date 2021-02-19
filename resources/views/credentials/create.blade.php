@@ -1,10 +1,11 @@
+@section('title', 'Create a Credential')
 @extends('layouts.master')
 
-@section('title', 'list')
+
 
 @section('content')
 
-<form method="POST" action="<?php echo URL::to('/'); ?>/credentials/save">
+{{Form::open(['action'=>'CredentialController@save'])}}
   {{ Form::token() }}
 
   <div class="form-group">
@@ -49,5 +50,5 @@
   <input type="submit" value="Save" class="btn btn-success float-right">
   <a href="#" class="btn btn-secondary" >Cancel</a>
   
-</form>
+  {{ Form::close() }}
 @stop

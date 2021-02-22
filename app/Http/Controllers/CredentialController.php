@@ -44,7 +44,7 @@ class CredentialController extends BaseController
 		$id = $request->query('id');		
 		$resultado = $this->CredentialModel->deleteById($id);
 
-		return redirect('Credentials');
+		return redirect('credentials');
 	}
 
 	public function edit(Request $request) {

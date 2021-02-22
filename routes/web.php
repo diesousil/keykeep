@@ -37,7 +37,7 @@ Route::group(['middleware' => 'auth:web'], function() {
 		Route::get('create','CredentialController@create');
 		Route::get('edit','CredentialController@edit');
 		Route::post('save','CredentialController@save');
-		Route::post('delete','CredentialController@delete');
+		Route::get('delete','CredentialController@delete');
 	});
 	
 	Route::prefix('users')->group(function() {

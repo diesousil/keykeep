@@ -25,7 +25,7 @@
                         <td class="jsgrid-cell jsgrid-align-left wd20" >{{ $credentialItem->group_name }}</td>
                         <td class="jsgrid-cell jsgrid-align-center wd20">
                           <a href="{{ action("CredentialController@edit",['id'=> $credentialItem->id]) }}"  ><i class="fas fa-pen"></i></a>
-                            <a href="{{ action("CredentialController@edit",['id'=> $credentialItem->id]) }}" style="margin-left: 5px;" onclick='return confirm("Tem certeza de que deseja excluir este grupo?");' ><i class="fas fa-trash"></i></a> 
+                          <a href="{{ action("CredentialController@delete",['id'=> $credentialItem->id]) }}" style="margin-left: 5px;" onclick='return confirm("Are you sure you want to delete this credential? (WARNING!!! It will be DEFINETLY lost)");' ><i class="fas fa-trash"></i></a> 
                             
                         </td>
                     </tr>

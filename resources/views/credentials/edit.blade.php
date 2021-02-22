@@ -1,7 +1,5 @@
+@section('title', 'Edit "' . $credentialToEdit->title  . '" Credential' )
 @extends('layouts.master')
-
-@section('title', 'list')
-
 @section('content')
 
   {{Form::open(['action'=>'CredentialController@save'])}}
@@ -17,13 +15,16 @@
     </div>
     <div class="form-group">
       <label for="inputurl">URL</label>
-      <input type="text" id="inputName" class="form-control" name="Url" value="{{$credentialToEdit->url }}">
+      <input type="text" id="inputName" class="form-control" name="url" value="{{$credentialToEdit->url }}">
+      
       <label for="inputurl">Login</label>
-      <input type="email" id="inputName" class="form-control" name="Login" value="{{$credentialToEdit->login }}">
+      <input type="text" id="inputName" class="form-control" name="login" value="{{$credentialToEdit->login }}">
+      
       <label for="inputurl">Password</label>
-      <input type="password" id="inputName" class="form-control" name="Password" value="{{$credentialToEdit->password }}">
+      <input type="password" id="inputName" class="form-control" name="password" value="{{$credentialToEdit->password }}">
+      
       <label for="inputurl">Observations</label>
-      <textarea id="inputDescription" class="form-control" rows="4" name="observations">{{ $credentialToEdit->observations }}</textarea>
+      <textarea id="inputObservations" class="form-control" rows="4" name="observations">{{ $credentialToEdit->observations }}</textarea>
       
     </div>
     <div class="row">

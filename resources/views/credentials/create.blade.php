@@ -35,7 +35,7 @@
   
   <div class="form-group">
     <label for="inputurl">Observations</label>
-    <input type="text" id="inputObservations" class="form-control" name="observations">
+    <textarea id="inputObservations" class="form-control" rows="4" name="observations"></textarea>
   </div>
 
   <div class="form-group">

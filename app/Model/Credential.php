@@ -53,7 +53,8 @@ class Credential extends BaseModel
     }
 
     public function saveByForm($formData) {
-        
+        //var_dump($formData);
+        //exit;
         $formData["user_id"] = Auth::id('id');
         $result = parent::saveByForm($formData);
         

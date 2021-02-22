@@ -23,7 +23,7 @@
                         <td class="jsgrid-cell jsgrid-align-left wd40">{{ $groupItem->description }}</td>
                         <td class="jsgrid-cell jsgrid-align-center wd20">
                           <a href="{{ action("GroupController@edit",['id'=> $groupItem->id]) }}"  ><i class="fas fa-pen"></i></a>
-                            <a href="{{ action("GroupController@delete",['id'=> $groupItem->id]) }}" style="margin-left: 5px;" onclick='return confirm("Tem certeza de que deseja excluir este grupo? (ATENÇÂO!!! Os subgrupos e credenciais serão perdidos)");' ><i class="fas fa-trash"></i></a> 
+                          <a href="{{ action("GroupController@delete",['id'=> $groupItem->id]) }}" style="margin-left: 5px;" onclick='return confirm("Are you sure you want to delete this group? (WARNING!!! Subgroups and credentials will be DEFINETLY lost)");' ><i class="fas fa-trash"></i></a> 
                             
                         </td>
                     </tr>

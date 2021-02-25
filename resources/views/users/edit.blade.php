@@ -4,20 +4,15 @@
 @section('content')
   {{Form::open(['action'=>'UserController@save'])}}
     {{ Form::token() }}
-
+    <input type="hidden" name="id" value="{{ $userToEdit->id }}">
       <div class="form-group">
         <label for="inputName">Name</label>
-        <input type="text" id="inputName" class="form-control" name="name">
+        <input type="text" id="inputName" class="form-control" name="name" value="{{ $userToEdit->name }}">
       </div>
 
       <div class="form-group">
         <label for="inputName">Email</label>
-        <input type="email" id="inputName" class="form-control" name="email">
-      </div>
-
-      <div class="form-group">
-        <label for="inputDescription">Password</label>
-        <input type="password" id="inputDescription" class="form-control" rows="4" name="password">
+        <input type="email" id="inputName" class="form-control" name="email" value="{{ $userToEdit->email }}">
       </div>
 
       <div class="form-group">
@@ -25,7 +20,11 @@
         <select class="form-control" name="role_id">
           <option value="0"> - Select user's role -</option>
           @foreach ($rolesList as $roleItem)
-            <option value="{{ $roleItem->id }}"> {{ $roleItem->name }}</option>
+            <option value="{{ $roleItem->id }}" 
+              @if($roleItem->id == $userToEdit->role_id)
+              selected
+              @endif
+              > {{ $roleItem->name }}</option>
           @endforeach
         </select>
       </div>

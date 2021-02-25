@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 use App\Model\User;
+use App\Model\Role;
 
 class UserController extends BaseController
 {
     protected $UserModel;
+    protected $RoleModel;
 
-	public function __construct(User $UserModel) {
+	public function __construct(User $UserModel, Role $RoleModel) {
 		parent::__construct();
-		$this->UserModel = $UserModel;		
+		$this->UserModel = $UserModel;	
+		$this->RoleModel = $RoleModel;		
 	}
 
     public function index() {
@@ -22,20 +25,15 @@ class UserController extends BaseController
 	}
 	
 	public function create() {
-		$UserResult = $this->UserModel->list();
+		$rolesList = $this->RoleModel->getList();
 
-		return $this->viewResult('users.create', ['UserResult'=>$UserResult]);
+		return $this->viewResult('users.create', ['rolesList'=>$rolesList]);
 	}
 	public function save(Request $request) {
 
 		$formData = $request->all();
+		$resultado = $this->UserModel->saveByForm($formData);
 		
-		if(isset($formData['id'])) {
-			$resultado = $this->UserModel->atualiza($formData);
-		}
-		else{
-			$resultado = $this->UserModel->create($formData);
-		}
 		return redirect('users');
 	}
 
@@ -48,10 +46,10 @@ class UserController extends BaseController
 	}
 
 	public function edit(Request $request) {
-		$id = $request->query('id');
+		$id = $request->query('id');		
+		$userToEdit = $this->UserModel->getById($id);
+		$rolesList = $this->RoleModel->getList();
 		
-		$resultUser = $this->UserModel->edit($id);
-		
-		return $this->viewResult('users.edit', ['resultedit'=>$resultUser]);
+		return $this->viewResult('users.edit', ['userToEdit'=>$userToEdit,'rolesList'=>$rolesList]);
 	}
 }

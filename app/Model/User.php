@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role_id'
     ];
 
     /**
@@ -101,28 +101,46 @@ class User extends Authenticatable
         
         return $result;
     }
-    public function atualiza($formData) {
 
-        $id = $formData['id'];
+    public function saveByForm($formData) {
+        
+        $formFields = $this->fillable;
 
-        $updateUsers = User::where("id",$id)->first();;
+        if(isset($formData["id"]) && !empty($formData["id"])) {
+            $objToSave = User::find(intval($formData["id"]));            
+        } else {
+            $objToSave = new User();
+        }
 
-        $updateUsers->name = $formData["name"];
-        $updateUsers->description = $formData["description"];
-        $updateUsers->password = hash('sha512', $formData["password"]);
-        $result = $newGroup->save();
+        foreach($formFields as $field) {
+
+            if(isset($formData[$field])) {
+                if($field == "password") {
+                    $formData[$field] = hash('sha512', $formData[$field]);
+                }
+                $objToSave->$field = $formData[$field];
+            } else {
+                if($field != "password")
+                    $objToSave->$field = null;
+            }
+
+        }
+
+        $result = $objToSave->save();
         
         return $result;
+        
+        
     }
 
     public function remove($id) {
-        $result=User::find($id)->delete();
+        $result = User::find($id)->delete();
         
         return $result;
     }
-    public function edit($id) {
+    public function getById($id) {
 
-        $result=User::where("id",$id)->first();
+        $result = User::where("id",$id)->first();
         
         return $result;
     }

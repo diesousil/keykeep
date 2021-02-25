@@ -7,7 +7,7 @@
     {{ Form::token() }}
 
     <div class="form-group">
-      <label for="inputName">Nome</label>
+      <label for="inputName">Name</label>
       <input type="text" id="inputName" class="form-control" name="name">
     </div>
 

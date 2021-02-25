@@ -16,11 +16,11 @@ class UserController extends BaseController
 	}
 
     public function index() {
-		$UserResult = $this->UserModel->list(); 
+		$usersList = $this->UserModel->list();		
 		
-		
-		return view('users.list', ['UserResult'=>$UserResult] );
+		return view('users.list', ['usersList'=>$usersList,'actionIsList'=>true] );
 	}
+	
 	public function create() {
 		$UserResult = $this->UserModel->list();
 

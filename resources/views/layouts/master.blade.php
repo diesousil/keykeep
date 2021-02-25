@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title><?php echo config("app.name"); ?> | @section("title"){{$title}}@show</title>
+  <title><?php echo config("app.name"); ?> | @section("title"){{$title ?? ''}}@show</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -67,7 +67,7 @@
         
         <!-- /.card-header -->
         <div class="card-header">
-            <h5 class="card-title">@section("title"){{$title}}@show</h5>
+            <h5 class="card-title">@section("title"){{$title ?? ''}}@show</h5>
             
             <div class="card-tools">
               <!--<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>-->

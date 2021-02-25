@@ -15,7 +15,7 @@
             <a href="<?php echo URL::to('myprofile'); ?>" class="d-block"><img src="/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"></a>
             </div>
             <div class="info">
-                <a href="<?php echo URL::to('myprofile'); ?>" class="d-block">{{$userName}}</a>
+                <a href="<?php echo URL::to('myprofile'); ?>" class="d-block">{{$userName ?? ''}}</a>
             </div>
         </li>
         <!-- User Dropdown Menu -->

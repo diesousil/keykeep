@@ -74,7 +74,7 @@
 				<a href="#" class="nav-link">
 				<i class="nav-icon fas fa-shield-alt"></i>
 				<p>
-					Security
+					Users
 					<i class="right fas fa-angle-left"></i>
 				</p>
 				</a>
@@ -83,7 +83,7 @@
 				<li class="nav-item">
 					<a href="{{url("/users")}}" class="nav-link">
 					<i class="nav-icon"></i>
-					<p>Users</p>
+					<p>List</p>
 					</a>
 				</li>
 				<!--saquei-->

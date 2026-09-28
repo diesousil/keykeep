@@ -1,25 +1,47 @@
-## [KeyKeep](https:/diegosilva.me/)
+# KeyKeep
 
-![license](https://img.shields.io/badge/license-MIT-blue.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Status](https://img.shields.io/badge/status-in%20development-yellow.svg)]()
 
-> Free tool to organize your personal passwords. UI is develobed based on [DeviasKit][https://github.com/devias-io/material-kit-react].
+> A free tool to organize your personal passwords.
 
-> It is currently in the development and testing phase, and I cannot guarantee its security; therefore, I recommend using it in a local environment or on secure networks. For those who choose to use it, I recommend avoiding exposing the API publicly until it has undergone more advanced security testing.
+**KeyKeep** is a web application for managing personal passwords. The UI is built on top of [Devias' Material Kit React](https://github.com/devias-io/material-kit-react).
 
-> One of my goals with this project—in addition to implementing a tool that I see as useful and sharing it publicly—is to use it as a testing ground to improve my existing knowledge of information security.
+## ⚠️ Security Notice
 
-## Quick start
+This project is currently **in development and testing**. Its security has not been independently audited, so:
 
-- Clone the repo: `git clone https://github.com/diesousil/keykeep`
-- Make sure your Node.js and npm versions are up to date
-- Install dependencies: `npm install` or `yarn`
-- Start the server: `npm run dev` or `yarn dev`
-- Open browser: `http://localhost:3000`
+- **Do not** use it to store critical credentials (banking, primary email, etc.).
+- Prefer running it in a **local environment** or on **trusted networks**.
+- Avoid **exposing the API publicly** until more advanced security testing has been completed.
 
-## License
+Beyond building a tool I find useful and sharing it publicly, one of my goals with this project is to use it as a **hands-on playground** to deepen my knowledge of information security.
 
-- Licensed under [MIT](https://github.com/devias-io/material-kit-react/blob/main/LICENSE.md)
+## 🚀 Quick Start
 
-## Contact Me
+### Prerequisites
 
-- Email Me: contact@diegosilva.me
+- [Node.js](https://nodejs.org/) (latest LTS version)
+- npm or yarn
+
+### Steps
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/diesousil/keykeep
+
+# 2. Enter the directory
+cd keykeep
+
+# 3. Install dependencies
+npm install
+# or
+yarn
+
+# 4. Start the development server
+npm run dev
+# or
+yarn dev
+
+# 5. Open in your browser
+# http://localhost:3000

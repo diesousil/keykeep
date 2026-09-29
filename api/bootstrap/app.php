@@ -8,9 +8,6 @@ use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
-    ->withProviders([
-        App\Providers\RouteServiceProvider::class,
-    ])
     ->withRouting(
         commands: __DIR__.'/../routes/console.php',
         health: '/up',

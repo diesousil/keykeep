@@ -15,41 +15,25 @@ class User extends Authenticatable implements JWTSubject
     use HasFactory;
     use Notifiable;
 
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
+    protected $fillable = [
+            'name',
+            'email',
+            'password',
+    ];
+
+    protected $casts = [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'two_factor_confirmed_at' => 'datetime',
+    ];
+
     public function getJWTIdentifier()
     {
         return $this->id;
     }
 
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
     public function getJWTCustomClaims()
     {
         return [];
-    }
-    protected function fillable(): array
-    {
-        return [
-            'name',
-            'email',
-            'password',
-        ];
-
-    }
-
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-            'two_factor_confirmed_at' => 'datetime',
-        ];
     }
 }

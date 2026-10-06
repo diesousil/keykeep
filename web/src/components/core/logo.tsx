@@ -22,12 +22,12 @@ export function Logo({ color = 'dark', emblem, height = HEIGHT, width = WIDTH }:
   let url: string;
 
   if (emblem) {
-    url = color === 'light' ? '/assets/logo-lock.svg' : '/assets/logo-lock.svg';
+    url = color === 'light' ? '/assets/logo-lock-light.svg' : '/assets/logo-lock-dark.svg';
   } else {
-    url = color === 'light' ? '/assets/logo-lock.svg' : '/assets/logo-lock.svg';
+    url = color === 'light' ? '/assets/logo-lock-light.svg' : '/assets/logo-lock-dark.svg';
   }
 
-  return <><Box alt="logo" component="img" height={height} src={url} width={width} /> <p>KeyKeep</p></>;
+  return <Box alt="logo" className={color} component="img" height={height} src={url} width={width} />;
 }
 
 export interface DynamicLogoProps {

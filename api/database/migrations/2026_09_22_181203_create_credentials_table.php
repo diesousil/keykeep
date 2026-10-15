@@ -5,14 +5,11 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class () extends Migration {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('credentials', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUUid('user_id')->constrained("users", "id")->nullable()->index();
+            $table->foreignUUid('user_id')->nullable()->index()->constrained("users", "id");
             $table->string("title", 255);
             $table->text("description");
             $table->string("url", 255);
@@ -25,9 +22,6 @@ return new class () extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('credentials');

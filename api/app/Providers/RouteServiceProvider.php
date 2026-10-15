@@ -29,7 +29,6 @@ class RouteServiceProvider extends ServiceProvider
                     });
 
                     Route::prefix('/access')
-                        ->namespace($this->namespace)
                         ->group(base_path('routes/api/access.php'));
                 });
 

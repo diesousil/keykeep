@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Access;
 
+use App\Repositories\Repository;
 use App\Models\Access\User;
 
 class UserRepository extends Repository
@@ -10,5 +11,10 @@ class UserRepository extends Repository
         User $model
     ) {
         parent::__construct($model);
+    }
+
+    public function getByEmail(string $email): User
+    {
+        return $this->model->where("email", $email)->first();
     }
 }

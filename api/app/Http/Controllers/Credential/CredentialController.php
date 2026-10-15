@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Credential;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Access\LoginRequest;
-use App\Services\UserService;
+use App\Services\Access\UserService;
 
-class AccessController extends Controller
+class CredentialController extends Controller
 {
     public function login(LoginRequest $request, UserService $service)
     {

@@ -2,10 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Models\Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Repository
 {
@@ -14,19 +15,36 @@ class Repository
     ) {
     }
 
+    protected function paginate(Builder $query, array|null $data): LengthAwarePaginator
+    {
+        $pageSize = (isset($data['page_size']) ? intval($data['page_size']) :
+                        (env('DEFAULT_LIST_PAGE_SIZE') != null ? env('DEFAULT_LIST_PAGE_SIZE') : 15));
+
+        $page     = (isset($data['page']) ? intval($data['page']) : 1);
+
+        return $query->paginate($pageSize, ['*'], 'page', $page);
+    }
+
+    private function sanitize_data(array $data): array
+    {
+        return array_filter($data, function ($item, $key) {
+            return $item !== null;
+        }, ARRAY_FILTER_USE_BOTH);
+    }
+
     protected function getQuery(): Builder
     {
         return $this->model::query();
     }
 
-    public function store(array $data): Model
+    public function create(array $data): Model
     {
-        return $this->model->create($data);
+        return $this->model->create($this->sanitize_data($data));
     }
 
-    public function batchStore(array $data): bool
+    public function batchCreate(array $data): bool
     {
-        return $this->model->insert($data);
+        return $this->model->insert($this->sanitize_data($data));
     }
 
     public function update(array $data, int|string $id): Model
@@ -39,7 +57,7 @@ class Repository
         return $dataObj;
     }
 
-    public function destroy(int|string $id): void
+    public function delete(int|string $id): void
     {
         $this->model->destroy($id);
     }
@@ -49,7 +67,12 @@ class Repository
         return $this->getQuery()->find($id);
     }
 
-    public function getAll(): Collection
+    public function listWithPagination(array|null $data): LengthAwarePaginator
+    {
+        return $this->paginate($this->getQuery(), $data);
+    }
+
+    public function list(array|null $data): Collection
     {
         return $this->getQuery()->get();
     }

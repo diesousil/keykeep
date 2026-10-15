@@ -1,20 +1,29 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Access;
 
 use Illuminate\Auth\AuthenticationException;
 use App\Services\Service;
-use App\Models\User;
+use App\Services\Access\UserServiceValidator;
+use App\Repositories\Access\UserRepository;
 
 class UserService extends Service
 {
-    public function __construct(User $model)
+    public function __construct(
+        UserRepository $repository
+    ) {
+        parent::__construct($repository);
+    }
+
+    private function generateExpiration()
     {
-        parent::__construct($model);
+        return ceil(config('jwt.ttl') / 60);
     }
 
     public function login(array $data): array
     {
+        $this->validator->validateLogin($data);
+
         $token = auth("api")->claims([])->attempt(
             [
                 'email' => $data['email'],
@@ -26,12 +35,10 @@ class UserService extends Service
             throw new AuthenticationException('Invalid username and/or password.');
         }
 
-        $expiration = $this->getExpiration();
-
         return [
             'access_token' => $token,
             'token_type'   => 'bearer',
-            'expires_in'   => $expiration . ' hours',
+            'expires_in'   => $this->generateExpiration() . ' hours',
         ];
     }
 }

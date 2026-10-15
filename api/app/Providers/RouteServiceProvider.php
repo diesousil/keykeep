@@ -33,6 +33,9 @@ class RouteServiceProvider extends ServiceProvider
 
                     Route::prefix('/credential')
                         ->group(base_path('routes/api/credential.php'));
+
+                    Route::prefix('/tag')
+                        ->group(base_path('routes/api/tag.php'));
                 });
 
         });

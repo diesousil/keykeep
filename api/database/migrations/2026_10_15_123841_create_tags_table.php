@@ -9,8 +9,9 @@ return new class () extends Migration {
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignUUid('user_id')->nullable()->index()->constrained("users", "id");
             $table->string("name", 255);
-            $table->string("slug", 20);
+            $table->string("slug", 255);
             $table->text("description");
             $table->timestamps();
             $table->softDeletes();

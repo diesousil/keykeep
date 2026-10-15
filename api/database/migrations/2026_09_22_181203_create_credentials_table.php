@@ -11,12 +11,12 @@ return new class () extends Migration {
             $table->uuid('id')->primary();
             $table->foreignUUid('user_id')->nullable()->index()->constrained("users", "id");
             $table->string("title", 255);
-            $table->text("description");
-            $table->string("url", 255);
-            $table->string("username", 255);
+            $table->text("description")->nullable(true);
+            $table->string("url", 255)->nullable(true);
+            $table->string("username", 255)->nullable(true);
             $table->string("password", 255);
             $table->string("ckey", 255);
-            $table->text("observations");
+            $table->text("observations")->nullable(true);
             $table->timestamps();
             $table->softDeletes();
         });

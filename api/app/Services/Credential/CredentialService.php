@@ -2,6 +2,7 @@
 
 namespace App\Services\Credential;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Services\Service;
 use App\Support\Crypter;
 use App\Models\Model;
@@ -15,27 +16,28 @@ class CredentialService extends Service
         parent::__construct($repository);
     }
 
-    private function generateCkey()
+    public function setPassword(array $data, int|string $id = null): Model
     {
-        return Crypter::generateKey();
+        $data["ckey"]     = Crypter::generateKey();
+        $data["password"] = (new Crypter($data["ckey"]))->encrypt($data["password"]);
+
+        return ($id == null ? parent::create($data) : parent::edit($data, $id));
     }
 
-    private function encrypt(string $password, string $ckey): string
+    public function getPassword(int|string $id): string
     {
-        return (new Crypter($ckey))->encrypt($password);
-    }
+        $credential = $this->repository->getById($id);
 
-    private function setPassword(array &$data): void
-    {
-        $data["ckey"]     = $this->generateCkey();
-        $data["password"] = $this->encrypt($data["password"], $data["ckey"]);
+        if (!$credential) {
+            throw new NotFoundHttpException("Record not found");
+        }
+
+        return (new Crypter($credential->ckey))->decrypt($credential->password);
     }
 
     public function create(array $data): Model
     {
-        $this->setPassword($data);
-
-        return parent::create($data);
+        return $this->setPassword($data);
     }
 
     public function edit(array $data, string|int $id): Model

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Credential;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Credential\CreateRequest;
 use App\Http\Requests\Credential\EditRequest;
+use App\Http\Requests\Credential\EditPasswordRequest;
 use App\Services\Credential\CredentialService;
 
 class CredentialController extends Controller
@@ -42,5 +43,20 @@ class CredentialController extends Controller
         CredentialService $service
     ) {
         return $this->success($service->list());
+    }
+
+    public function setPassword(
+        int|string $id,
+        EditPasswordRequest $request,
+        CredentialService $service
+    ) {
+        return $this->success($service->setPassword($request->validated(), $id));
+    }
+
+    public function getPassword(
+        int|string $id,
+        CredentialService $service
+    ) {
+        return $this->success($service->getPassword($id));
     }
 }

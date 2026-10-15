@@ -6,6 +6,8 @@ Route::controller(CredentialController::class)->middleware("auth:api")->group(fu
     Route::post('/', 'create');
     Route::patch('/{id}', 'edit');
     Route::delete('/{id}', 'delete');
+    Route::get('/password/{id}', 'getPassword');
+    Route::patch('/password/{id}', 'setPassword');
     Route::get('/', 'list');
     Route::get('/{uuid}', 'show');
 });

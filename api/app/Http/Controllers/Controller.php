@@ -15,7 +15,7 @@ use Throwable;
 class Controller
 {
     public static function success(
-        array|null|Collection|LengthAwarePaginator|Model|bool $data,
+        mixed $data,
         int $statusCode = Response::HTTP_OK
     ): JsonResponse|ResourceCollection {
         if ($data == null) {

@@ -49,7 +49,7 @@ class Repository
 
     public function update(array $data, int|string $id): Model
     {
-        $dataObj = $this->getById($id);
+        $dataObj = $this->getQuery()->findOrFail($id);
 
         $dataObj->fill($data);
         $dataObj->save();
@@ -57,9 +57,9 @@ class Repository
         return $dataObj;
     }
 
-    public function delete(int|string $id): void
+    public function delete(int|string $id): bool
     {
-        $this->model->destroy($id);
+        return $this->model->destroy($id);
     }
 
     public function getById(int|string $id): ?Model

@@ -2,23 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\ItemNotFoundException;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\Model;
 use Throwable;
 
 class Controller
 {
-    public static function success(bool|object|array $data, int $statusCode = Response::HTTP_OK): JsonResponse|ResourceCollection
-    {
+    public static function success(
+        array|null|Collection|LengthAwarePaginator|Model|bool $data,
+        int $statusCode = Response::HTTP_OK
+    ): JsonResponse|ResourceCollection {
+        if ($data == null) {
+            throw new NotFoundHttpException('Record not found.');
+        }
 
         if ($data instanceof ResourceCollection) {
             return $data;
         }
 
         return response()->json([
-            'data' => $data,
+            'success' => true,
+            'data'    => $data,
         ], $statusCode);
     }
 

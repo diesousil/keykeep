@@ -71,7 +71,7 @@ abstract class Service
         );
     }
 
-    public function getById(string|int $id): Model
+    public function getById(string|int $id): Model | null
     {
         return $this->repository->getById($id);
     }

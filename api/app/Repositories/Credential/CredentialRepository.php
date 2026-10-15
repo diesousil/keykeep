@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Credential;
 
+use App\Repositories\Repository;
 use App\Models\Credential\Credential;
 
 class CredentialRepository extends Repository

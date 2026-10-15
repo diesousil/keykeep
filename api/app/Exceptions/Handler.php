@@ -8,6 +8,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Handler extends ExceptionHandler
 {
@@ -72,14 +73,16 @@ class Handler extends ExceptionHandler
             );
         }
 
-        if ($exception instanceof HttpException) {
+        if ($exception instanceof NotFoundHttpException ||
+            $exception instanceof ModelNotFoundException) {
+
             return response()->json([
                 'success' => false,
-                'message' => $exception->getMessage(),
-            ], $exception->getStatusCode());
+                'message' => 'Record not found',
+            ], Response::HTTP_NOT_FOUND);
         }
 
-        if ($exception instanceof NotFoundHttpException) {
+        if ($exception instanceof HttpException) {
             return response()->json([
                 'success' => false,
                 'message' => $exception->getMessage(),

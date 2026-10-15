@@ -59,7 +59,7 @@ class Repository
 
     public function delete(int|string $id): bool
     {
-        return $this->model->destroy($id);
+        return $this->getQuery()->find($id)->delete();
     }
 
     public function getById(int|string $id): ?Model

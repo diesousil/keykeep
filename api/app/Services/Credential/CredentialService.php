@@ -27,7 +27,7 @@ class CredentialService extends Service
 
     private function setPassword(array &$data): void
     {
-        $data["ckey"] = $this->generateCkey();
+        $data["ckey"]     = $this->generateCkey();
         $data["password"] = $this->encrypt($data["password"], $data["ckey"]);
     }
 

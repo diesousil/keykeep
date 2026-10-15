@@ -30,6 +30,9 @@ class RouteServiceProvider extends ServiceProvider
 
                     Route::prefix('/access')
                         ->group(base_path('routes/api/access.php'));
+
+                    Route::prefix('/credential')
+                        ->group(base_path('routes/api/credential.php'));
                 });
 
         });

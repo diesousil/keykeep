@@ -14,6 +14,7 @@ class CredentialService extends Service
         CredentialRepository $repository
     ) {
         parent::__construct($repository);
+        $this->setSearchFields(["description","title","url","username","observations"]);
     }
 
     public function setPassword(array $data, int|string $id = null): Model

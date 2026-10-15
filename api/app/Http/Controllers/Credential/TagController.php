@@ -41,6 +41,13 @@ class TagController extends Controller
     public function list(
         TagService $service
     ) {
-        return $this->success($service->list());
+        return $this->success($service->list(request()->query()));
+    }
+
+    public function search(
+        string $searchTerms,
+        TagService $service
+    ) {
+        return $this->success($service->search($searchTerms, request()->query()));
     }
 }

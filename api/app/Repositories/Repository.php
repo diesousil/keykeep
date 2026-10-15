@@ -67,13 +67,25 @@ class Repository
         return $this->getQuery()->find($id);
     }
 
-    public function listWithPagination(array|null $data): LengthAwarePaginator
+    public function listWithPagination(array|null $paginationSets): LengthAwarePaginator
     {
-        return $this->paginate($this->getQuery(), $data);
+        return $this->paginate($this->getQuery(), $paginationSets);
     }
 
     public function list(array|null $data): Collection
     {
         return $this->getQuery()->get();
     }
+
+    public function search(array $fields, string $searchTerms): Collection
+    {
+        return $this->getQuery()->search($fields, $searchTerms)->get();
+    }
+
+    public function searchWithPagination(array $fields, string $searchTerms, array $paginationSets): LengthAwarePaginator
+    {
+        return $this->paginate($this->getQuery()->search($fields, $searchTerms), $paginationSets);
+    }
+
+
 }

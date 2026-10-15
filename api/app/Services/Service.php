@@ -12,11 +12,17 @@ use App\Models\Model;
 abstract class Service
 {
     protected ?ServiceValidator $validator = null;
+    private array $defaultSearchFields = [];
 
     public function __construct(
         protected Repository $repository
     ) {
         $this->setValidator();
+    }
+
+    protected function setSearchFields(array $searchFields)
+    {
+        $this->defaultSearchFields = $searchFields;
     }
 
     protected function getValidatorClassName(): string
@@ -63,16 +69,24 @@ abstract class Service
         return $this->repository->delete($id);
     }
 
-    public function list(array|null $data = null, bool $paginate = true): LengthAwarePaginator | Collection
+    public function list(array|null $paginationSets = null, bool $paginate = true): LengthAwarePaginator | Collection
     {
         return ($paginate ?
-            $this->repository->listWithPagination($data) :
-            $this->repository->list($data)
+            $this->repository->listWithPagination($paginationSets) :
+            $this->repository->list()
         );
     }
 
     public function getById(string|int $id): Model | null
     {
         return $this->repository->getById($id);
+    }
+
+    public function search(string $searchTerms, array|null $paginationSets = null, bool $paginate = true): LengthAwarePaginator | Collection
+    {
+        return ($paginate ?
+            $this->repository->searchWithPagination($this->defaultSearchFields, $searchTerms, $paginationSets) :
+            $this->repository->search($this->defaultSearchFields, $searchTerms)
+        );
     }
 }

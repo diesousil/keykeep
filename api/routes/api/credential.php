@@ -8,6 +8,7 @@ Route::controller(CredentialController::class)->middleware("auth:api")->group(fu
     Route::delete('/{id}', 'delete');
     Route::get('/password/{id}', 'getPassword');
     Route::patch('/password/{id}', 'setPassword');
+    Route::get('/search/{searchTerms}', 'search');
     Route::get('/', 'list');
     Route::get('/{uuid}', 'show');
 });

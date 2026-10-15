@@ -42,7 +42,7 @@ class CredentialController extends Controller
     public function list(
         CredentialService $service
     ) {
-        return $this->success($service->list());
+        return $this->success($service->list(request()->query()));
     }
 
     public function setPassword(
@@ -58,5 +58,12 @@ class CredentialController extends Controller
         CredentialService $service
     ) {
         return $this->success($service->getPassword($id));
+    }
+
+    public function search(
+        string $searchTerms,
+        CredentialService $service
+    ) {
+        return $this->success($service->search($searchTerms, request()->query()));
     }
 }

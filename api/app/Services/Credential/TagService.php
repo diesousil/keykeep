@@ -11,5 +11,6 @@ class TagService extends Service
         TagRepository $repository
     ) {
         parent::__construct($repository);
+        $this->setSearchFields(["name","slug","description"]);
     }
 }

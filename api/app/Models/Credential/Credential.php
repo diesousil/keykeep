@@ -3,11 +3,13 @@
 namespace App\Models\Credential;
 
 use App\Models\Model;
-use App\Models\User;
-use App\Models\Tag;
+use App\Models\Access\User;
+use App\Models\Credential\Tag;
 
 class Credential extends Model
 {
+    protected $table = "credentials";
+
     protected $fillable = [
         'user_id',
         'title',
@@ -37,6 +39,6 @@ class Credential extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'credential_tag', 'credential_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'credential_tags', 'credential_id', 'tag_id')->wherePivotNull("deleted_at");
     }
 }

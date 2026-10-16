@@ -3,10 +3,12 @@
 namespace App\Models\Credential;
 
 use App\Models\Model;
-use App\Models\User;
+use App\Models\Access\User;
 
 class Tag extends Model
 {
+    protected $table = "tags";
+
     protected $fillable = [
         'user_id',
         'name',

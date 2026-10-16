@@ -38,15 +38,24 @@ class CredentialService extends Service
 
     public function create(array $data): Model
     {
-        return $this->setPassword($data);
+        $newModel = $this->setPassword($data);
+        $this->saveRelatedTags($data, $newModel->id);
+
+        return $this->getById($newModel->id);
     }
 
     public function edit(array $data, string|int $id): Model
     {
-        if (isset($data["password"])) {
-            $this->setPassword($data);
-        }
+        parent::edit($data, $id);
+        $this->saveRelatedTags($data, $id);
 
-        return parent::edit($data, $id);
+        return $this->getById($id);
+    }
+
+    private function saveRelatedTags($data, $id)
+    {
+        if (isset($data["tags"])) {
+            $this->repository->saveRelatedTags($data["tags"], $id);
+        }
     }
 }

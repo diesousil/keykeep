@@ -3,13 +3,14 @@
 namespace App\Http\Resources\Credential;
 
 use App\Http\Resources\Resource;
+use App\Http\Resources\Credential\TagResource;
 use Illuminate\Http\Request;
 
 class CredentialResource extends Resource
 {
     public function toArray(Request $request): array
     {
-        return [
+        $data = [
             'id'                => $this->id,
             'title'             => $this->title,
             'description'       => $this->description,
@@ -17,5 +18,13 @@ class CredentialResource extends Resource
             'observations'      => $this->observations,
             'username'          => $this->login
         ];
+
+        $data['tags'] = $this->when(
+            $this->relationLoaded('tags') && $this->tags,
+            fn () => TagResource::collection($this->tags)
+        );
+
+        return $data;
     }
+
 }

@@ -2,7 +2,7 @@
 
 ## 1. Project Overview
 KeyKeep is a web application for managing personal passwords. It consists of:
-- **Backend**: Laravel API (PHP 8.3) with JWT authentication
+- **Backend**: Laravel API (PHP 8.5) with JWT authentication
 - **Frontend**: Next.js 16.3.6 React app with Material Kit React UI kit
 - **Purpose**: Free tool to organize personal passwords (currently in development/testing)
 
@@ -16,12 +16,24 @@ KeyKeep is a web application for managing personal passwords. It consists of:
 ### Backend (Laravel)
 - **Framework**: Laravel 13.17 with PHP 8.5
 - **Authentication**: JWT via `tymon/jwt-auth` package
-- **Database**: SQLite (default), migrations for users and credentials tables
+- **Database**: MySQL (configured), migrations for users, credentials, tags, and related tables
 - **Structure**:
-  - `app/Http/Controllers/AccessController.php` - Handles `/api/login` endpoint
-  - `app/Models/User.php` - Extends Authenticatable, implements JWTSubject
-  - `app/Services/UserService.php` - Handles login logic
-  - `database/migrations/` - Users, credentials, password_reset_tokens, sessions tables
+  - `app/Http/Controllers/Access/AccessController.php` - Handles `/api/login` endpoint
+  - `app/Http/Controllers/Credential/CredentialController.php` - Manages credential operations
+  - `app/Http/Controllers/Credential/TagController.php` - Manages tag operations
+  - `app/Models/Access/User.php` - Extends Authenticatable, implements JWTSubject
+  - `app/Models/Credential/Credential.php` - Credential model with relationships
+  - `app/Models/Credential/Tag.php` - Tag model with relationships
+  - `app/Services/Access/UserService.php` - Handles login logic
+  - `app/Services/Credential/CredentialService.php` - Handles credential business logic
+  - `app/Services/Credential/TagService.php` - Handles tag business logic
+  - `app/Services/Service.php` - Base service class with common functionality
+  - `app/Repositories/Credential/CredentialRepository.php` - Credential data access
+  - `app/Repositories/Credential/TagRepository.php` - Tag data access
+  - `app/Repositories/Repository.php` - Base repository class
+  - `database/migrations/` - Users, credentials, tags, credential_tags, password_reset_tokens, sessions tables
+  - `app/Http/Requests/` - Form request validation classes
+  - `app/Http/Resources/` - API response formatting resources
   - `config/jwt.php` - JWT configuration
 
 ### Frontend (Next.js)
@@ -43,6 +55,9 @@ KeyKeep is a web application for managing personal passwords. It consists of:
 3. Backend validates via `LoginRequest` and `UserService::login()`
 4. Returns JWT token stored in localStorage
 5. Frontend uses token for authenticated requests (currently mocked)
+6. For credential operations, frontend sends requests to `/api/credentials/*` endpoints
+7. Backend processes requests through Controllers → Services → Repositories → Models
+8. Returns formatted JSON responses via Resource classes
 
 ## 3. Key Commands
 
@@ -88,6 +103,8 @@ Located in `/web` directory:
   - Form Request validation (LoginRequest)
   - Service layer for business logic
   - JWT implementation via `Tymon\JWTAuth\Contracts\JWTSubject`
+  - Repository pattern for data access
+  - Resource classes for API response formatting
 - **Documentation**: PHPDoc blocks for methods and classes
 - **Rules**: Follow Laravel Boost guidelines in `api/CLAUDE.md`
 
@@ -133,13 +150,14 @@ Located in `/web` directory:
   - Avoid hardcoded credentials (currently in mock auth client)
   - Never store passwords in plaintext (hashed via bcrypt)
 - **API Endpoints**:
-  - Currently only `/api/login` implemented - avoid exposing until properly secured
-  - Do not add public credential management endpoints without encryption
+  - Currently only `/api/login` implemented for authentication - avoid exposing credential management endpoints without proper security review
   - Validate and sanitize all inputs (FormRequest validation)
+  - Implement proper authorization checks
 - **Environment**:
   - Never commit `.env` with real secrets
   - Use different keys for development vs production
   - Keep debug mode off in production
+  - Do not commit bootstrap/cache files to version control
 
 ### Deprecated Patterns
 - **Backend**:
@@ -147,6 +165,8 @@ Located in `/web` directory:
   - Avoid raw SQL queries - use Eloquent or query builder
   - Don't create verification scripts when tests exist
   - Avoid modifying base Laravel folders without approval
+  - Don't modify input data directly in service layers (work on copies)
+  - Don't perform multiple model operations without database transactions
 - **Frontend**:
   - Don't modify global CSS directly - use theme providers
   - Avoid inline styles when possible - use MUI sx prop or CSS modules
@@ -158,7 +178,22 @@ Located in `/web` directory:
   - Don't commit debugging statements (console.log, dd(), etc.)
   - Avoid mixing PHP short tags - use full `<?php ?>` tags
 
-### Testing
+## 6. Recent Improvements (from code review)
+
+Based on a recent code review, the following improvements were identified and should be addressed:
+- Fix CredentialResource incorrectly referencing `$this->login` instead of `$this->username`
+- Ensure service layers work on copies of input data to avoid side effects
+- Optimize tag synchronization to avoid unnecessary delete/insert operations
+- Add query parameter validation for list and search endpoints
+- Extract duplicate pagination logic in service classes
+- Implement database transactions for operations spanning multiple models
+- Add application-wide logging for debugging and auditing
+- Implement API versioning in route definitions
+- Remove or implement the empty Helper class
+- Add comprehensive API documentation (OpenAPI/Swagger)
+
+## 7. Testing
+
 - **Backend**:
   - Write tests for every code change
   - Use factories for test data

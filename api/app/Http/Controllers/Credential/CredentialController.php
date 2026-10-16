@@ -6,10 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Credential\CreateRequest;
 use App\Http\Requests\Credential\EditRequest;
 use App\Http\Requests\Credential\EditPasswordRequest;
+use App\Http\Resources\Credential\CredentialResource;
 use App\Services\Credential\CredentialService;
 
 class CredentialController extends Controller
 {
+    protected function getResourceClass(): ?string
+    {
+        return CredentialResource::class;
+    }
+
     public function create(
         CreateRequest $request,
         CredentialService $service

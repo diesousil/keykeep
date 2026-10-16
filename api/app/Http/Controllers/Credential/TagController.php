@@ -5,10 +5,16 @@ namespace App\Http\Controllers\Credential;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tag\CreateRequest;
 use App\Http\Requests\Tag\EditRequest;
+use App\Http\Resources\Credential\TagResource;
 use App\Services\Credential\TagService;
 
 class TagController extends Controller
 {
+    protected function getResourceClass(): ?string
+    {
+        return TagResource::class;
+    }
+
     public function create(
         CreateRequest $request,
         TagService $service

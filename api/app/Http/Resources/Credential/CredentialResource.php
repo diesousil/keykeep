@@ -16,7 +16,7 @@ class CredentialResource extends Resource
             'description'       => $this->description,
             'url'               => $this->url,
             'observations'      => $this->observations,
-            'username'          => $this->login
+            'username'          => $this->username
         ];
 
         $data['tags'] = $this->when(

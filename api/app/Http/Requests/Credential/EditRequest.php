@@ -9,7 +9,7 @@ class EditRequest extends Request
     public function rules(): array
     {
         return [
-            'title'        => 'required|max:255',
+            'title'        => 'max:255',
             'description'  => 'nullable',
             'url'          => 'nullable',
             'login'        => 'nullable',
